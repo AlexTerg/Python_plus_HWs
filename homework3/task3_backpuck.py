@@ -5,10 +5,11 @@ things: dict = {'зажигалка': 20, 'компас': 100, 'фрукты': 5
                 'салфетки': 40, 'бутерброды': 820, 'палатка': 5500, 'спальный мешок': 2250, 'жвачка': 10}
 
 
-
 sort_things = dict(sorted(things.items(), key=lambda x: x[1], reverse=True))
 
 # Функция вернет лист кортежей с ключами и значениями
+
+
 def get_thingslst(data: dict) -> list:
     data_lst: list = []
     for key, val in data.items():
@@ -19,16 +20,17 @@ def get_thingslst(data: dict) -> list:
 
 
 def get_buckpuck(things: dict) -> dict:
-
-    # Создал этот список для того что бы в дальнейшем мог обратиться к нужному ключу и в итоге выйти из цикла
-    things_lst: list = get_thingslst(things)
-
+    
     max_weigth: int = MAX_WEIGTH
+    # Отсекаем сразу предметы которые весят больше MAX_WEIGTH
+    things = {k: v for k, v in things.items() if v < max_weigth}
+    # Создал этот список для того что бы в дальнейшем мог обратиться к нужному ключу и в итоге выйти из цикла
+    
+
+    things_lst: list = get_thingslst(things)
 
     backpuck: dict = {}  # Рюкзак
     cnt_key: int = 1
-    
-    cnt = len(things_lst) * 5
 
     while len(things_lst) != 0:
 
