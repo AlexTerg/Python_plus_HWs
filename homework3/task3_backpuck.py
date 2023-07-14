@@ -1,4 +1,4 @@
-MAX_WEIGTH: int = 3000
+MAX_WEIGTH: int = 5000
 
 things: dict = {'зажигалка': 20, 'компас': 100, 'фрукты': 500, 'рубашка': 300,
                 'термос': 1000, 'аптечка': 200, 'куртка': 600, 'бинокль': 400, 'удочка': 1200,
@@ -20,19 +20,18 @@ def get_thingslst(data: dict) -> list:
 
 
 def get_buckpuck(things: dict) -> dict:
-    
+
     max_weigth: int = MAX_WEIGTH
     # Отсекаем сразу предметы которые весят больше MAX_WEIGTH
-    things = {k: v for k, v in things.items() if v < max_weigth}
-    # Создал этот список для того что бы в дальнейшем мог обратиться к нужному ключу и в итоге выйти из цикла
-    
+    things = {k: v for k, v in things.items() if v <= max_weigth}
 
+    # Создал этот список для того что бы в дальнейшем мог обратиться к нужному ключу и в итоге выйти из цикла
     things_lst: list = get_thingslst(things)
 
     backpuck: dict = {}  # Рюкзак
     cnt_key: int = 1
 
-    while len(things_lst) != 0:
+    while len(things_lst) > 0:
 
         # Временный массив со значениями, которые будут падать сюда из цикла for
         temp_backpuck: list = []
