@@ -1,8 +1,8 @@
 def get_dict(**kwargs):
     result = {}
     for key, val in kwargs.items():
-        if globals().get(key).__hash__ is None:
-            result[f'{val}'] = key
+        if kwargs.get(key).__hash__ is None:
+            result[str(val)] = key
         else:
             result[hash(key)] = val
     return result
