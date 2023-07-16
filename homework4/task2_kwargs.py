@@ -2,7 +2,7 @@ def get_dict(**kwargs):
     result = {}
     for key, val in kwargs.items():
         if globals().get(key).__hash__ is None:
-            result[key] = val
+            result[f'{val}'] = key
         else:
             result[hash(key)] = val
     return result
